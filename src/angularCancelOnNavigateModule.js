@@ -1,12 +1,12 @@
 angular
   .module('angularCancelOnNavigateModule', [])
-  .config(function($httpProvider) {
+  .config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('HttpRequestTimeoutInterceptor');
-  })
-  .run(function ($rootScope, HttpPendingRequestsService) {
+  }])
+  .run(['$rootScope', 'HttpPendingRequestsService', function ($rootScope, HttpPendingRequestsService) {
     $rootScope.$on('$locationChangeSuccess', function (event, newUrl, oldUrl) {
       if (newUrl != oldUrl) {
         HttpPendingRequestsService.cancelAll();
       }
     })
-  });
+  }]);

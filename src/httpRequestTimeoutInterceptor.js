@@ -1,5 +1,5 @@
 angular.module('angularCancelOnNavigateModule')
-  .factory('HttpRequestTimeoutInterceptor', function ($q, HttpPendingRequestsService) {
+  .factory('HttpRequestTimeoutInterceptor', ['$q', 'HttpPendingRequestsService', function ($q, HttpPendingRequestsService) {
     return {
       request: function (config) {
         config = config || {};
@@ -16,4 +16,4 @@ angular.module('angularCancelOnNavigateModule')
         return $q.reject(response);
       }
     };
-  });
+  }]);

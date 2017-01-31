@@ -1,5 +1,5 @@
 angular.module('angularCancelOnNavigateModule')
-  .service('HttpPendingRequestsService', function ($q) {
+  .service('HttpPendingRequestsService', ['$q', function ($q) {
     var cancelPromises = [];
 
     function newTimeout() {
@@ -20,4 +20,4 @@ angular.module('angularCancelOnNavigateModule')
       newTimeout: newTimeout,
       cancelAll: cancelAll
     };
-  });
+  }]);
